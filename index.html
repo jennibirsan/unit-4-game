@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>simple turtle game</title>
+
+  <style type="text/css">
+
+    .turtle-image {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+  <!-- Note that this div is now empty. We will fill it dynamically -->
+  <div id="turtles">
+  </div>
+
+  <!-- JAVASCRIPT  -->
+  <!-- ========================================= -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+  var targetNumber = Math.floor(Math.random()* 101)+19;
+
+  $("#number-to-guess").text(targetNumber);
+
+  var counter = 0;
+
+  // Now for the hard part. Creating multiple turtles each with their own unique number value.
+
+  // We begin by expanding our array to include four options.
+  var numberOptions = [Math.floor(Math.random()*11+1), Math.floor(Math.random()*11)+1, Math.floor(Math.random()*11)+1, Math.floor(Math.random()*11)+1]
+  // do math.floor 4 times for the 4 images
+
+  var ImageArray=["http://static.giantbomb.com/uploads/original/3/33529/1118427-137554_199396_leonardo.jpg", "https://vignette.wikia.nocookie.net/p__/images/8/84/Raphael_%28TMNT_2003%29.png/revision/latest?cb=20190321150158&path-prefix=protagonist", "http://hruska.se/mike_01.jpg", "http://pngimg.com/uploads/ninja_turtles/ninja_turtles_PNG9.png"]
+
+  // Next we create a for loop to create turtles for every numberOption.
+  for (var i = 0; i < numberOptions.length; i++) {
+
+    // For each iteration, we will create an imageTurtle
+    var imageTurtle = $("<img clas='turtle-image' src='"+ImageArray[i]+"' data-turtlevalue='"+numberOptions[i]+"' />");
+
+    // First each turtle will be given the class ".turtle-image".
+    // This will allow the CSS to take effect.
+    imageTurtle.addClass("turtle-image");
+
+    // Each imageTurtle will be given a src link to the turtle image
+    imageTurtle.attr("src", "http://static.giantbomb.com/uploads/original/3/33529/1118427-137554_199396_leonardo.jpg", "https://vignette.wikia.nocookie.net/p__/images/8/84/Raphael_%28TMNT_2003%29.png/revision/latest?cb=20190321150158&path-prefix=protagonist", "http://hruska.se/mike_01.jpg", "http://pngimg.com/uploads/ninja_turtles/ninja_turtles_PNG9.png");
+
+    // Each imageTurtle will be given a data attribute called data-turtleValue.
+    // This data attribute will be set equal to the array value.
+    imageTurtle.attr("data-turtlevalue", numberOptions[i]);
+// <img class ="turtle-image" src="remote image" data-turtlevalue="random number 1" >")
+    // Lastly, each turtle image (with all it classes and attributes) will get added to the page.
+    $("#turtles").append(imageTurtle);
+  }
+
+  // This time, our click event applies to every single turtle on the page. Not just one.
+  $(".turtle-image").on("click", function() {
+
+    // Determining the turtle's value requires us to extract the value from the data attribute.
+    // Using the $(this) keyword specifies that we should be extracting the turtle value of the clicked turtle.
+    // Using the .attr("data-turtlevalue") allows us to grab the value out of the "data-turtlevalue" attribute.
+    // Since attributes on HTML elements are strings, we must convert it to an integer before adding to the counter
+
+    var turtleValue = ($(this).attr("data-turtlevalue"));
+    turtleValue = parseInt(turtleValue);
+    // We then add the turtleValue to the user's "counter" which is a global variable.
+    // Every click, from every turtle adds to the global counter.
+    counter += turtleValue;
+
+    // All of the same game win-lose logic applies. So the rest remains unchanged.
+    alert("New score: " + counter);
+
+    if (counter === targetNumber) {
+      alert("You win!");
+    }
+
+    else if (counter >= targetNumber) {
+      alert("You lose!!");
+    }
+
+  });
+
+  </script>
+</body>
+</html>
