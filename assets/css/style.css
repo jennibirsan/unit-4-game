@@ -4,11 +4,12 @@
   }
 
 body{
-    background: url("../images/concrete_seamless.png");
+    background: url("../images/brick.jpg");
   }
 
 .turtle-image {
     width: 250px;
     height: 250px;
-    align-content: center
+    padding-left: 10px;
+    padding-right: 10px;
   }
