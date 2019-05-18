@@ -2,24 +2,77 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>simple turtle game</title>
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Bootstrap File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-  <style type="text/css">
-    .turtle-image {
-      width: 300px;
-      height: 300px;
-      align-items: center
-    }
-  </style>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
 
 <body>
+    <div class="container">
+        <!-- jumbotron at the top, grey -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron text-center">
+                    <h1>TMNT: The Game</h1>
+                    <!-- line break -->
+                    <hr>
+                    <!-- two button centered one plays music, other pauses music -->
+                    <div id="musicControls" class="text-center">
+                        <button class="btn btn-danger btn-xs theme-button">
+                            <span class="fa fa-music"></span> Play Theme!</button>
+                        <button class="btn btn-dark btn-xs pause-button">
+                            <span class="fa fa-pause"></span> Pause Song</button>
 
-  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+    
+                        </div>
+
+                </div>
+
+                <div class="card text-center">
+                    <h5 class="card-header">How to Play</h5>
+                    <div class="card-body text-center">
+                        p>You are Thanos. One of the Eternals. And you will be given a random number at the start of the game. </p>
+                        <p>
+                            There are six infinity stones below. By clicking on a stone you will add a specific amount of
+                            points to your total score. You will destroy half the world's population if your score matches the
+                            number at the beginning at the game. You will get whooped by the lamest Avenger (i.e. Hawkeye) if your score goes
+                            above. </p>
+                        <p>The value of each crystal is hidden from you until you click on it. Each time the game starts, the
+                            game will change the value of the score, thus, giving you an opportunity to erase another half of the human
+                            population. Decrease as much of the world's population before the song ends.
+                        </p>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="card text-center">
+                    <h5 class="card-header">Let's Play</h5>
+                    <div class="card-body text-center">
+                        <h5>Number to Guess: <span id="number-to-guess"></span></h5>
 
   <p>Wins: <span id="wins"></span"</p> <p>Losses: <span id="losses"></span</p> <p>Number Guessed: <span
           id="numberGuessed"></span></p>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <br>
 
   <!-- Note that this div is now empty. We will fill it dynamically -->
   <div id="turtles">
@@ -98,7 +151,18 @@ function startMyGame(){
 startMyGame()
 
 
+$(document).ready(function () {
 
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("src", "assets/theme.mp3");
+
+$(".theme-button").on("click", function () {
+    audioElement.play()
+});
+$(".pause-button").on("click", function () {
+    audioElement.pause()
+});
+});
     
 
   </script>
