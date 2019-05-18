@@ -2,168 +2,174 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>simple turtle game</title>
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/style.css">
-    <!-- Bootstrap File -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Bootstrap File -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
 
 <body>
-    <div class="container">
-        <!-- jumbotron at the top, grey -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron text-center">
-                    <h1>TMNT: The Game</h1>
-                    <!-- line break -->
-                    <hr>
-                    <!-- two button centered one plays music, other pauses music -->
-                    <div id="musicControls" class="text-center">
-                        <button class="btn btn-danger btn-xs theme-button">
-                            <span class="fa fa-music"></span> Play Theme!</button>
-                        <button class="btn btn-dark btn-xs pause-button">
-                            <span class="fa fa-pause"></span> Pause Song</button>
-
-    
-                        </div>
-
-                </div>
-                <br>
-                <div class="card text-center">
-                    <h5 class="card-header">How to Play</h5>
-                    <div class="card-body text-center">
-                        <p>You must defeat Shredder. One of your worst enemies. And you will be given a random number at the start of the game. </p>
-                        <p>
-                            You have the best crew by your side: Donatello, Leonardo, Michaelangelo, and Raphael. By clicking on a TMNT image, you will add a specific amount of
-                            points to your total score. Put Master Splinter's training to the test by matching the exact number given to you. You will get destroyed by Shredder if your score goes above.
-                       </p>
-                        <p>The value of each TMNT is hidden from you until you click on it. Each time the game starts, the
-                            game will change the value of the score, thus, giving you an opportunity to keep on slaying the Shredz.
-                        </p>
-                    </div>
-                </div>
-
-                <br>
-                <br>
-
-                <div class="card text-center">
-                    <h5 class="card-header">Let's Play</h5>
-                    <div class="card-body text-center">
-                        <h5>Number to Guess: <span id="number-to-guess"></span></h5>
-
-  <p>Wins: <span id="wins"></span"</p> <p>Losses: <span id="losses"></span</p> <p>Number Guessed: <span
-          id="numberGuessed"></span></p>
+  <div class="container">
+    <!-- jumbotron at the top, grey -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <img src="./assets/images/PinClipart.com_nachos-clipart_151407.png" class="tmntlogo" alt="tmntlogo">
+            <br>
+          <h1>TMNT: The Game</h1>
+          <!-- line break -->
+          <hr>
+          <!-- two button centered one plays music, other pauses music -->
+          <div id="musicControls" class="text-center">
+            <button class="btn btn-danger btn-xs theme-button">
+              <span class="fa fa-music"></span> Play Theme!</button>
+            <button class="btn btn-dark btn-xs pause-button">
+              <span class="fa fa-pause"></span> Pause Song</button>
 
 
-                    </div>
-                </div>
+          </div>
 
-
-            </div>
+        </div>
+        <br>
+        <div class="card text-center">
+          <h5 class="card-header">How to Play</h5>
+          <div class="card-body text-center">
+            <p>You must defeat Shredder. One of your worst enemies. And you will be given a random number at the start
+              of the game. </p>
+            <p>
+              You have the best crew by your side: Donatello, Leonardo, Michaelangelo, and Raphael. By clicking on a
+              TMNT image, you will add a specific amount of
+              points to your total score. Put Master Splinter's training to the test by matching the exact number given
+              to you. You will get destroyed by Shredder if your score goes above.
+            </p>
+            <p>The value of each TMNT is hidden from you until you click on it. Each time the game starts, the
+              game will change the value of the score, thus, giving you an opportunity to keep on slaying the Shredz.
+            </p>
+          </div>
         </div>
 
         <br>
         <br>
-  <!-- Note that this div is now empty. We will fill it dynamically -->
-  <div id="turtles" class="text-center">
+
+        <div class="card text-center">
+          <h5 class="card-header">Let's Play</h5>
+          <div class="card-body text-center">
+            <h5>Number to Guess: <span id="number-to-guess"></span></h5>
+
+            <p>Wins: <span id="wins"></span"</p> <p>Losses: <span id="losses"></span</p> <p>Number Guessed: <span
+                    id="numberGuessed"></span></p>
 
 
-  </div>
-
-  <!-- JAVASCRIPT  -->
-  <!-- ========================================= -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <script type="text/javascript">
-var targetNumber = 0;
-var counter = 0;
-var wins = 0;
-var losses = 0;
-
-$("#number-to-guess").text(targetNumber);
-$("#wins").text(wins);
-$("#losses").text(losses);
-$("#numberGuessed").text(counter);
-
-var imageOne = "./assets/images/donatello.jpg"
-var imageTwo = "./assets/images/leonardo.jpg"
-var imageThree = "./assets/images/michaelangelo.jpg"
-var imageFour = "./assets/images/raphfinal.jpg"
-
-var ImageArray = [imageOne, imageTwo, imageThree, imageFour]
-
-//  isolate  funtionality (computer number, calculating the random number of the images, what do you need to clean)
-function calculateComputerNumber() {
-  targetNumber = Math.floor(Math.random() * 101) + 19;
-  $("#number-to-guess").text(targetNumber);
+          </div>
+        </div>
 
 
-}
+      </div>
+    </div>
 
-function imageTurtle() {
-  var numberOptions = [Math.floor(Math.random() * 11 + 1), Math.floor(Math.random() * 11) + 1, Math.floor(Math.random() * 11) + 1, Math.floor(Math.random() * 11) + 1]
-  for (var i = 0; i < numberOptions.length; i++) {
-    var imageTurtle = $("<img class='turtle-image' src='" + ImageArray[i] + "' data-turtlevalue='" + numberOptions[i] + "' />");
-    $("#turtles").append(imageTurtle);
-  }
-  $(".turtle-image").on("click", function () {
-    var turtleValue = ($(this).attr("data-turtlevalue"));
-    console.log(turtleValue)
-    console.log($(this).attr("src"))
-    turtleValue = parseInt(turtleValue);
-    counter += turtleValue;
-    $("#numberGuessed").text(counter);
-    if (counter === targetNumber) {
-      alert("Mission accomplished! Master Splinter would be proud!");
-      wins++;
+    <br>
+    <br>
+    <!-- Note that this div is now empty. We will fill it dynamically -->
+    <div id="turtles" class="text-center">
+
+
+    </div>
+
+    <!-- JAVASCRIPT  -->
+    <!-- I GOT HELP FROM ISABEL, MY TUTOR! -->
+    <!-- ========================================= -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+      var targetNumber = 0;
+      var counter = 0;
+      var wins = 0;
+      var losses = 0;
+
+      $("#number-to-guess").text(targetNumber);
       $("#wins").text(wins);
-      startMyGame();
-    }
-    else if (counter >= targetNumber) {
-      alert("You lose! Shredder killed you.");
-      losses++;
       $("#losses").text(losses);
-      startMyGame();
-    }
-  });
-};
+      $("#numberGuessed").text(counter);
 
-function startMyGame(){
-    counter = 0;
-    $("#numberGuessed").text(counter);
-    targetNumber = 0;
-    $("#number-to-guess").text(targetNumber);
-    $("#turtles").empty();
-    calculateComputerNumber();
-    imageTurtle();
+      var imageOne = "./assets/images/donatello.jpg"
+      var imageTwo = "./assets/images/leonardo.jpg"
+      var imageThree = "./assets/images/michaelangelo.jpg"
+      var imageFour = "./assets/images/raphfinal.jpg"
 
-  }
-startMyGame()
+      var ImageArray = [imageOne, imageTwo, imageThree, imageFour]
+
+      //  isolate  funtionality (computer number, calculating the random number of the images, what do you need to clean)
+      function calculateComputerNumber() {
+        targetNumber = Math.floor(Math.random() * 101) + 19;
+        $("#number-to-guess").text(targetNumber);
 
 
-$(document).ready(function () {
+      }
 
-var audioElement = document.createElement("audio");
-audioElement.setAttribute("src", "assets/theme.mp3");
+      function imageTurtle() {
+        var numberOptions = [Math.floor(Math.random() * 11 + 1), Math.floor(Math.random() * 11) + 1, Math.floor(Math.random() * 11) + 1, Math.floor(Math.random() * 11) + 1]
+        for (var i = 0; i < numberOptions.length; i++) {
+          var imageTurtle = $("<img class='turtle-image' src='" + ImageArray[i] + "' data-turtlevalue='" + numberOptions[i] + "' />");
+          $("#turtles").append(imageTurtle);
+        }
+        $(".turtle-image").on("click", function () {
+          var turtleValue = ($(this).attr("data-turtlevalue"));
+          console.log(turtleValue)
+          console.log($(this).attr("src"))
+          turtleValue = parseInt(turtleValue);
+          counter += turtleValue;
+          $("#numberGuessed").text(counter);
+          if (counter === targetNumber) {
+            alert("Mission accomplished! Master Splinter would be proud!");
+            wins++;
+            $("#wins").text(wins);
+            startMyGame();
+          }
+          else if (counter >= targetNumber) {
+            alert("You lose! Shredder killed you.");
+            losses++;
+            $("#losses").text(losses);
+            startMyGame();
+          }
+        });
+      };
 
-$(".theme-button").on("click", function () {
-    audioElement.play()
-});
-$(".pause-button").on("click", function () {
-    audioElement.pause()
-});
-});
-  
+      function startMyGame() {
+        counter = 0;
+        $("#numberGuessed").text(counter);
+        targetNumber = 0;
+        $("#number-to-guess").text(targetNumber);
+        $("#turtles").empty();
+        calculateComputerNumber();
+        imageTurtle();
 
-  </script>
+      }
+      startMyGame()
+
+
+      $(document).ready(function () {
+
+        var audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", "assets/theme.mp3");
+
+        $(".theme-button").on("click", function () {
+          audioElement.play()
+        });
+        $(".pause-button").on("click", function () {
+          audioElement.pause()
+        });
+      });
+
+
+    </script>
 
 
 </body>

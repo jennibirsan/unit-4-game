@@ -1,3 +1,6 @@
+// <!-- I GOT HELP FROM ISABEL, MY TUTOR! -->
+
+
 var targetNumber = 0;
 var counter = 0;
 var wins = 0;
